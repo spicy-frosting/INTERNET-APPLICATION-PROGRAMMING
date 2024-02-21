@@ -1,0 +1,32 @@
+document.addEventListener("DOMContentLoaded", function () {
+    // Query for the submit button and input task field
+    const submit = document.getElementById("submitBtn");
+    const newTaskInput = document.getElementById("new_task");
+    submit.disabled = true;
+    newTaskInput.addEventListener("input", function () {
+        
+        submit.disabled = !newTaskInput.value.trim();
+    });
+
+    // confirm for submission of form
+    document.getElementById("task_Form").addEventListener("submit", function (event) {
+        
+        event.preventDefault();
+
+        // 5.Find the task submited
+        const taskText = newTaskInput.value.trim();
+
+        // create a list for the new task
+        const newTaskItem = document.createElement("li");
+        newTaskItem.textContent = taskText;
+
+        //7. Add the new task item 
+        document.getElementById("task_List").appendChild(newTaskItem);
+
+        // Clear the input 
+        newTaskInput.value = "";
+
+        // Disable the submit button 
+        submit.disabled = true;
+    });
+});
